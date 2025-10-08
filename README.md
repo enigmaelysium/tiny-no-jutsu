@@ -1,3 +1,4 @@
+
 <img src="assets/banner.png" width="100%" alt="Banner">
 
 # <img src="assets/thanos-snap.gif" width="20" height="20"> Tiny no Jutsu
@@ -6,7 +7,7 @@
 
 [![Python Version](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.2.0-orange.svg)](https://github.com/yourusername/tiny-no-jutsu)
+[![Version](https://img.shields.io/badge/version-1.2.1-orange.svg)](https://github.com/yourusername/tiny-no-jutsu)
 
 ## 📖 Overview
 
@@ -242,7 +243,7 @@ pip install pillow-heif
 
 ## 📝 License
 
-This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**.  
+This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International ({LICENSE_SERIAL})**.  
 
 You are free to **use, share, and modify** this project for **non-commercial purposes only**, as long as you give appropriate credit.  
 For full license details, see the [LICENSE](LICENSE) file.

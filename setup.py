@@ -1,8 +1,9 @@
 from setuptools import setup, find_packages
+import tiny_no_jutsu.config as config
 
 setup(
-    name="tiny-no-jutsu",
-    version="1.2.0",
+    name=config.PROJECT_NAME,
+    version=config.VERSION,
     packages=find_packages(),
     install_requires=[
         "Pillow",
@@ -17,11 +18,12 @@ setup(
     },
     python_requires=">=3.8",
     description="🌀 Tiny no Jutsu - Image Compressor & Converter",
-    author="Your Name",
-    url="https://github.com/yourusername/tiny-no-jutsu",  # optional
+    author=config.AUTHOR,
+    author_email=config.AUTHOR_EMAIL,
+    url=config.GIT_URL,  # optional
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
+        "License :: Other/Proprietary License",
         "Operating System :: OS Independent",
     ],
 )

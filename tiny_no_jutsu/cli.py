@@ -6,44 +6,32 @@ from pathlib import Path
 from PIL import Image, UnidentifiedImageError
 from tqdm import tqdm
 import humanize
+import tiny_no_jutsu.config as config
+import sys
+import pillow_heif
+
+
 
 # Optional HEIC support
 try:
-    import pillow_heif
     pillow_heif.register_heif_opener()
 except ImportError:
     pass
 
-SUPPORTED_EXTS = (
-    ".jpg", ".jpeg", ".png", ".bmp", ".tiff",
-    ".gif", ".heic", ".heif", ".jfif", ".pjpeg", ".pjp"
-)
+SUPPORTED_EXTS = config.SUPPORTED_EXTS
 
-VERSION = "1.2.0"
+VERSION = config.VERSION
 
-FORMAT_MAP = {
-    "jpg": "JPEG",
-    "jpeg": "JPEG",
-    "png": "PNG",
-    "webp": "WEBP",
-    "bmp": "BMP",
-    "gif": "GIF",
-    "tiff": "TIFF"
-}
+FORMAT_MAP = config.FORMAT_MAP
+
+PROJECT_NAME = config.PROJECT_NAME
+
+BANNER = config.BANNER
 
 
 def banner():
-    print(r"""
- _____  _                  _   _           ___         _               
-|_   _|(_)                | \ | |         |_  |       | |              
-  | |   _  _ __   _   _   |  \| |  ___      | | _   _ | |_  ___  _   _ 
-  | |  | || '_ \ | | | |  | . ` | / _ \     | || | | || __|/ __|| | | |
-  | |  | || | | || |_| |  | |\  || (_) |/\__/ /| |_| || |_ \__ \| |_| |
-  \_/  |_||_| |_| \__, |  \_| \_/ \___/ \____/  \__,_| \__||___/ \__,_|
-                   __/ |                                               
-                  |___/                                                 
-""")
-    print(f"🌀 Tiny no Jutsu v{VERSION} — Ninja-level image compression and conversion!\n")
+    print(BANNER)
+    print(f"🌀 {PROJECT_NAME} v{VERSION} — Ninja-level image compression and conversion!\n")
 
 
 def clamp_quality(quality):
@@ -138,7 +126,7 @@ def process_all_files(files, input_folder: Path, output_folder: Path, quality, c
     start_time = time.time()
     report_data = []
 
-    with tqdm(total=len(files), desc="⚔️  Casting Tiny no Jutsu", unit="img") as pbar:
+    with tqdm(total=len(files), desc="⚔️  Casting {PROJECT_NAME}", unit="img") as pbar:
         for file in files:
             size_after, output_file = process_single_file(
                 file, input_folder, output_folder, quality, convert_format, compress, convert, dry_run, overwrite
@@ -225,10 +213,10 @@ def process_images(input_folder, output_folder, quality, convert_format=None, co
         save_report(report_data, output_folder, report_format)
 
 
-def main():
+def cli():
     banner()
 
-    parser = argparse.ArgumentParser(description="🌀 Tiny no Jutsu - Image Compressor & Converter with reporting")
+    parser = argparse.ArgumentParser(description="🌀 {PROJECT_NAME} - Image Compressor & Converter with reporting")
     parser.add_argument("-i", "--input", help="Input folder", required=False)
     parser.add_argument("-o", "--output", help="Output folder", required=False)
     parser.add_argument("-q", "--quality", type=int, default=None, help="Compression quality (1–100)")
@@ -323,3 +311,10 @@ def main():
         report=args.report,
         report_format=args.report_format
     )
+
+def main():
+    try:
+       cli()
+    except KeyboardInterrupt:
+        print("\n🌀 Scroll rolled back — mission cancelled!")
+        exit(0)

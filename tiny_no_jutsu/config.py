@@ -2,7 +2,7 @@
 
 PROJECT_NAME = "Tiny no Jutsu"
 COMMAND_NAME = "tinynojutsu"
-VERSION = "1.2.1"
+VERSION = "1.2.2"
 LICENSE_SERIAL = "CC BY-NC 4.0"
 LICENSE_NAME = "Creative Commons Attribution-NonCommercial 4.0 International ({LICENSE_SERIAL})"
 LICENSE_BADGE_URL = "https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey.svg"

@@ -7,9 +7,20 @@ from PIL import Image, UnidentifiedImageError
 from tqdm import tqdm
 import humanize
 import tiny_no_jutsu.config as config
+import os
 import sys
 import pillow_heif
 
+
+# Determine base directory
+if getattr(sys, 'frozen', False):
+    # Running as PyInstaller exe
+    BASE_DIR = sys._MEIPASS
+else:
+    # Running as Python script
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+ASSETS_DIR = os.path.join(BASE_DIR, "assets")
 
 
 # Optional HEIC support
@@ -214,9 +225,22 @@ def process_images(input_folder, output_folder, quality, convert_format=None, co
 
 
 def cli():
-    banner()
 
-    parser = argparse.ArgumentParser(description="🌀 {PROJECT_NAME} - Image Compressor & Converter with reporting")
+     # Custom usage string for clean help output
+    usage_str = (
+        "tinynojutsu [-h] [-v] [-i INPUT] [-o OUTPUT] [-q QUALITY] "
+        "[-f FORMAT] [--compress] [--convert] [--dry-run] [--overwrite] "
+        "[--report] [--report-format {json,csv}]"
+    )
+
+    parser = argparse.ArgumentParser(description=f"🌀 {PROJECT_NAME} - Image Compressor & Converter with reporting", usage=usage_str, formatter_class=argparse.RawTextHelpFormatter, add_help=False )
+    # Version & Help first
+    parser.add_argument("-v", "--version", action="store_true", help="Show the version and exit")
+    parser.add_argument("-h", "--help", action="store_true", help="Show the help and exit")
+    
+   
+
+    # Then image processing arguments
     parser.add_argument("-i", "--input", help="Input folder", required=False)
     parser.add_argument("-o", "--output", help="Output folder", required=False)
     parser.add_argument("-q", "--quality", type=int, default=None, help="Compression quality (1–100)")
@@ -231,8 +255,20 @@ def cli():
     args = parser.parse_args()
     
     # Track which flags were explicitly provided via command line
-    import sys
     provided_args = sys.argv[1:]
+
+    # Immediate exit flags
+    if len(provided_args) == 1:
+        if args.help:
+            parser.print_help()
+            return
+        if args.version:
+            print(f"v{VERSION}")
+            return
+        
+    banner()
+
+    
 
     # --- Input Folder ---
     input_path_str = args.input or input(f"📂 Enter input folder (default: current folder): ").strip()

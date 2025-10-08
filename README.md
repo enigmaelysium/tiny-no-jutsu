@@ -7,7 +7,7 @@
 
 [![Python Version](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.2.1-orange.svg)](https://github.com/yourusername/tiny-no-jutsu)
+[![Version](https://img.shields.io/badge/version-1.2.2-orange.svg)](https://github.com/yourusername/tiny-no-jutsu)
 
 ## 📖 Overview
 
@@ -26,18 +26,41 @@
 
 ## 🚀 Installation
 
+There are two ways to install Tiny no Jutsu:
+
+1. Download the prebuilt installer from our [website](https://tiny-no-jutsu.vercel.app/) and follow the instructions.
+2. Install via pip from source.
+
 ### Prerequisites
 
-- Python 3.7 or higher
-- pip package manager
-- git 
+Before installation, make sure you have:
 
+- Python 3.7 or higher — Download from [python.org](https://www.python.org/downloads/) if needed.
+- pip package manager (comes bundled with Python)
+- Git (optional, only needed if cloning the repository)
 
-### clone the project 
+You can verify your setup with:
+
+```bash
+python --version
+pip --version
+```
+
+You should see Python 3.7+ and pip version information. If you don’t have Git, you can download it from [git-scm.com](https://git-scm.com/downloads) or skip Git and download the ZIP directly from GitHub.
+
+### Option 1: Clone the Project
+
 ```bash
 git clone https://github.com/yourusername/tiny-no-jutsu.git
 cd tiny-no-jutsu
 ```
+
+### Option 2: Download ZIP
+
+1. Navigate to the GitHub repository.
+2. Click **Code → Download ZIP**.
+3. Extract the ZIP to a folder of your choice.
+
 ### Install Dependencies
 
 ```bash
@@ -96,6 +119,14 @@ and it will prompt you with the missing options
 | `--report-format` | `json` | Report format (`json` or `csv`) |
 
 **Note:** You must specify at least one action: `--compress` or `--convert` (or both).
+
+### Info And Help Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `-h, --help` | Show help message and exit |
+| `-v, --version` | Show program version and exit |
+
 
 ## 💡 Examples
 
@@ -164,7 +195,7 @@ The following image formats are supported:
                    __/ |                                               
                   |___/                                                 
 
-🌀 Tiny no Jutsu v1.2.0 — Ninja-level image compression and conversion!
+🌀 Tiny no Jutsu v1.2.2 — Ninja-level image compression and conversion!
 
 📋 Mission Briefing
 ───────────────────────────────────────────────

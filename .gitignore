@@ -40,3 +40,10 @@ Thumbs.db
 .coverage
 htmlcov/
 readme_generate.py
+Tiny No Jutsu.spec
+tinynojutsu.iss
+.spec
+dist_installer/
+exe_maker_doc.md
+install_tinynojutsu.sh
+TinyNoJutsu.spec

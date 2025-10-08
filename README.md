@@ -1,10 +1,12 @@
-# 🌀 Tiny no Jutsu
+<img src="assets/banner.png" width="100%" alt="Banner">
 
-> Anime-inspired Image Compressor & Converter — Cast compression techniques with ninja precision!
+# <img src="assets/thanos-snap.gif" width="20" height="20"> Tiny no Jutsu
+
+> Image Compressor & Converter — Cast compression techniques with ninja precision!
 
 [![Python Version](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.0.0-orange.svg)](https://github.com/yourusername/tiny-no-jutsu)
+[![License](https://img.shields.io/badge/license-CC%20BY--NC%204.0-lightgrey.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-1.2.0-orange.svg)](https://github.com/yourusername/tiny-no-jutsu)
 
 ## 📖 Overview
 
@@ -18,6 +20,8 @@
 - **⚡ Fast Processing** - Optimized with progress bars and efficient PIL operations
 - **🎨 Wide Format Support** - Supports JPG, JPEG, PNG, BMP, TIFF, GIF, HEIC, HEIF, and more
 - **🛡️ Safe Processing** - Handles RGBA and palette modes automatically
+- **🧠 Smart Prompts** – Automatically prompts for missing input, output, quality, format, and action flags
+- **📝 Reports** – Save processed file statistics in JSON or CSV
 
 ## 🚀 Installation
 
@@ -50,22 +54,23 @@ pip install -r requirements.txt
 Pillow>=9.0.0
 tqdm>=4.64.0
 humanize>=4.0.0
+pillow-heif>=0.5.0
 ```
 
 ## 📋 Usage
 
-### Basic Syntax
+### Global Run
 
-simply run globaly:
+simply run:
 ```bash
 tinynojutsu
 ```
-and follow instruction
+Follow the prompts if any required flags are missing.
 
-or
+### Command-Line Usage
 
 ```bash
-tinynojutsu.py -i INPUT_FOLDER -o OUTPUT_FOLDER [OPTIONS]
+tinynojutsu -i INPUT_FOLDER -o OUTPUT_FOLDER [OPTIONS]
 ```
 and it will prompt you with the missing options
 
@@ -84,6 +89,10 @@ and it will prompt you with the missing options
 | `-f, --format` | None | Target format for conversion (e.g., `webp`, `jpg`, `png`) |
 | `--compress` | False | Enable image compression |
 | `--convert` | False | Enable format conversion |
+| `--dry-run` | False | Simulate without writing files |
+| `--overwrite` | False | Overwrite existing files if present |
+| `--report` | False | Generate report of processed files |
+| `--report-format` | `json` | Report format (`json` or `csv`) |
 
 **Note:** You must specify at least one action: `--compress` or `--convert` (or both).
 
@@ -141,19 +150,32 @@ The following image formats are supported:
 - **GIF** (`.gif`)
 - **HEIC/HEIF** (`.heic`, `.heif`)
 
-## 📊 Output Example
+## 📊 Sample Output
 
 ```
-🌀 Tiny no Jutsu v1.0.0 — Casting compression technique with ninja precision!
+
+ _____  _                  _   _           ___         _               
+|_   _|(_)                | \ | |         |_  |       | |              
+  | |   _  _ __   _   _   |  \| |  ___      | | _   _ | |_  ___  _   _ 
+  | |  | || '_ \ | | | |  | . ` | / _ \     | || | | || __|/ __|| | | |
+  | |  | || | | || |_| |  | |\  || (_) |/\__/ /| |_| || |_ \__ \| |_| |
+  \_/  |_||_| |_| \__, |  \_| \_/ \___/ \____/  \__,_| \__||___/ \__,_|
+                   __/ |                                               
+                  |___/                                                 
+
+🌀 Tiny no Jutsu v1.2.0 — Ninja-level image compression and conversion!
 
 📋 Mission Briefing
-────────────────────────────
-📂 Input Folder : ./photos
-📁 Output Folder: ./compressed
-🖼️  Total Images: 25
-🎯 Goal         : Compress
-⚙️  Quality      : 85
-────────────────────────────
+───────────────────────────────────────────────
+📂 Input Folder     : ./photos
+📁 Output Folder    : ./compressed
+🖼️ Total Images      : 25
+🎯 Goal             : Compress + Convert
+⚙️ Quality          : 85
+🔄 Convert To       : webp
+🧪 Dry Run          : No
+♻️ Overwrite        : No
+───────────────────────────────────────────────
 
 ⚔️  Casting Tiny no Jutsu: 100%|██████████| 25/25 [00:03<00:00, 7.52img/s]
 
@@ -161,13 +183,15 @@ The following image formats are supported:
 ────────────────────────────
 🕐 Duration       : 3.32 sec
 📦 Original Size  : 45.2 MB
-💾 Compressed Size: 12.8 MB
+💾 New Size       : 12.8 MB
 📉 Saved          : 32.4 MB (71.68%)
 🎉 Operation Successful — Images mastered with Tiny no Jutsu!
+
 ```
 
 ## ⚠️ Important Notes
 
+- **Automatic Output Folder Creation** – The script will create the output folder if it does not exist
 - **Original Files**: The script never modifies original files—all output goes to a separate folder
 - **Format Compatibility**: Some formats (like JPEG) don't support transparency—RGBA images are converted to RGB
 - **Quality Trade-offs**: Lower quality values significantly reduce file size but may introduce visible artifacts
@@ -180,6 +204,15 @@ The following image formats are supported:
 - Verify the input folder path is correct
 - Ensure your images have supported file extensions
 - Check file permissions
+
+### Windows Folder Errors
+
+If `WinError 2` occurs when creating output folder, specify a path with simple names:
+
+```
+C:\temp\tiny_output
+C:\Users\<yourname>\Desktop\tiny_output
+```
 
 ### PIL/Pillow Installation Issues
 
@@ -213,6 +246,8 @@ This project is licensed under the **Creative Commons Attribution-NonCommercial 
 
 You are free to **use, share, and modify** this project for **non-commercial purposes only**, as long as you give appropriate credit.  
 For full license details, see the [LICENSE](LICENSE) file.
+
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.

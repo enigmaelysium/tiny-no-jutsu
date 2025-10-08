@@ -2,7 +2,7 @@
 Tiny no Jutsu - Image Compressor & Converter
 """
 
-__version__ = "1.0.0"
+__version__ = "1.2.0"
 __author__ = "anas daghma"
 __email__ = "contact@anasdaghma.com"
 

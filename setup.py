@@ -2,12 +2,13 @@ from setuptools import setup, find_packages
 
 setup(
     name="tiny-no-jutsu",
-    version="1.0.0",
+    version="1.2.0",
     packages=find_packages(),
     install_requires=[
         "Pillow",
         "tqdm",
         "humanize",
+        "pillow-heif",
     ],
     entry_points={
         "console_scripts": [
